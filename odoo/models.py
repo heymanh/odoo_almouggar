@@ -2810,6 +2810,58 @@ class BaseModel(MetaModel('DummyModel', (object,), {'_register': False})):
 
         return result
 
+    # Ajouté dans le cadre des recherches elasticsearch
+    @api.multi
+    def read_json(self, fields=None, load='_classic_read'):
+        """ read([fields])
+        Reads the requested fields for the records in ``self``, low-level/RPC
+        method. In Python code, prefer :meth:`~.browse`.
+        :param fields: list of field names to return (default is all fields)
+        :return: a list of dictionaries mapping field names to their values,
+                 with one dictionary per record
+        :raise AccessError: if user has no read rights on some of the given
+                records
+        """
+        # check access rights
+        self.check_access_rights('read')
+        fields = self.check_field_access_rights('read', fields)
+
+        # split fields into stored and computed fields
+        stored, inherited, computed = [], [], []
+        for name in fields:
+            field = self._fields.get(name)
+            if field:
+                if field.store:
+                    stored.append(name)
+                elif field.base_field.store:
+                    inherited.append(name)
+                else:
+                    computed.append(name)
+            else:
+                _logger.warning("%s.read() with unknown field '%s'", self._name, name)
+
+        # fetch stored fields from the database to the cache; this should feed
+        # the prefetching of secondary records
+        self._read_from_database(stored, inherited)
+
+        # retrieve results from records; this takes values from the cache and
+        # computes remaining fields
+        result = []
+        name_fields = [(name, self._fields[name]) for name in (stored + inherited + computed)]
+        use_name_get = (load == '_classic_read')
+        for record in self:
+            try:
+                # values = {'id': record.id, 'uuid': record.uuid}
+                #elasticsearch
+                values = {'id': record.id}
+                for name, field in name_fields:
+                    values[name] = field.convert_to_read_json(record[name], record, use_name_get)
+                result.append(values)
+            except MissingError:
+                pass
+
+        return result
+
     @api.multi
     def _prefetch_field(self, field):
         """ Read from the database in order to fetch ``field`` (:class:`Field`
@@ -4601,6 +4653,44 @@ class BaseModel(MetaModel('DummyModel', (object,), {'_register': False})):
             records = records.with_context(context)
 
         result = records.read(fields)
+        if len(result) <= 1:
+            return result
+
+        # reorder read
+        index = {vals['id']: vals for vals in result}
+        return [index[record.id] for record in records if record.id in index]
+
+    # Ajouté dans le cadre des recherches elasticsearch
+    @api.model
+    def search_read_json(self, domain=None, fields=None, offset=0, limit=None, order=None):
+        """
+        Performs a ``search()`` followed by a ``read()``.
+        :param domain: Search domain, see ``args`` parameter in ``search()``. Defaults to an empty domain that will match all records.
+        :param fields: List of fields to read, see ``fields`` parameter in ``read()``. Defaults to all fields.
+        :param offset: Number of records to skip, see ``offset`` parameter in ``search()``. Defaults to 0.
+        :param limit: Maximum number of records to return, see ``limit`` parameter in ``search()``. Defaults to no limit.
+        :param order: Columns to sort result, see ``order`` parameter in ``search()``. Defaults to no sort.
+        :return: List of dictionaries containing the asked fields.
+        :rtype: List of dictionaries.
+        """
+        records = self.search(domain or [], offset=offset, limit=limit, order=order)
+        if not records:
+            return []
+
+        if fields and fields == ['id']:
+            # shortcut read if we only want the ids
+            return [{'id': record.id} for record in records]
+
+        # read() ignores active_test, but it would forward it to any downstream search call
+        # (e.g. for x2m or function fields), and this is not the desired behavior, the flag
+        # was presumably only meant for the main search().
+        # TODO: Move this to read() directly?
+        if 'active_test' in self._context:
+            context = dict(self._context)
+            del context['active_test']
+            records = records.with_context(context)
+
+        result = records.read_json(fields)
         if len(result) <= 1:
             return result
 

@@ -851,6 +851,19 @@ class Field(MetaField('DummyField', (object,), {})):
         """
         return False if value is None else value
 
+    #AJouté pour la recherche avec elasticsearch
+    def convert_to_read_json(self, value, record, use_name_get=True):
+        """ Convert ``value`` from the record format to the format returned by
+        method :meth:`BaseModel.read`.
+        :param bool use_name_get: when True, the value's display name will be
+            computed using :meth:`BaseModel.name_get`, if relevant for the field
+        """
+        # return False if value is None else value
+        if isinstance(value, bytes):
+            value = value.decode("utf-8")
+
+        return '' if value is None else '' if value is False else value
+
     def convert_to_write(self, value, record):
         """ Convert ``value`` from the record format to the format of method
         :meth:`BaseModel.write`.
@@ -1225,6 +1238,14 @@ class Integer(Field):
             return float(value)
         return value
 
+    #ajouté dans le cadre de la recherche avec elasticsearch
+    def convert_to_read_json(self, value, record, use_name_get=True):
+        # Integer values greater than 2^31-1 are not supported in pure XMLRPC,
+        # so we have to pass them as floats :-(
+        if value and value > MAXINT:
+            return float(value)
+        return value
+
     def _update(self, records, value):
         # special case, when an integer field is used as inverse for a one2many
         cache = records.env.cache
@@ -1361,6 +1382,10 @@ class Monetary(Field):
         return value
 
     def convert_to_read(self, value, record, use_name_get=True):
+        return value
+
+    #utilisé dans le cadre de la recherche avec elasticsearch
+    def convert_to_read_json(self, value, record, use_name_get=True):
         return value
 
     def convert_to_write(self, value, record):
@@ -2043,6 +2068,10 @@ class Reference(Selection):
     def convert_to_read(self, value, record, use_name_get=True):
         return "%s,%s" % (value._name, value.id) if value else False
 
+    #utilisé dans le cadre de la recherche elasticsearh
+    def convert_to_read_json(self, value, record, use_name_get=True):
+        return "%s,%s" % (value._name, value.id) if value else ""
+
     def convert_to_export(self, value, record):
         return value.name_get()[0][1] if value else ''
 
@@ -2202,6 +2231,21 @@ class Many2one(_Relational):
         else:
             return value.id
 
+    #utilisé dans le cadre de la recherche elasticsearh
+    def convert_to_read_json(self, value, record, use_name_get=True):
+        if use_name_get and value:
+            # evaluate name_get() as superuser, because the visibility of a
+            # many2one field value (id and name) depends on the current record's
+            # access rights, and not the value's access rights.
+            try:
+                # performance: value.sudo() prefetches the same records as value
+                return {'id': value.id, 'name': value.sudo().display_name}
+            except MissingError:
+                # Should not happen, unless the foreign key is missing.
+                return {'id': '', 'name': ''}
+        else:
+            return {'id': value.id or '', 'name': value.sudo().display_name or ''}
+
     def convert_to_write(self, value, record):
         return value.id
 
@@ -2311,6 +2355,10 @@ class _RelationalMulti(_Relational):
 
     def convert_to_read(self, value, record, use_name_get=True):
         return value.ids
+
+    #utilisé dans le cadre de la recherche elasticsearch
+    def convert_to_read_json(self, value, record, use_name_get=True):
+        return [{'id': x.id, 'name': x.sudo().display_name} for x in value]
 
     def convert_to_write(self, value, record):
         # make result with new and existing records
