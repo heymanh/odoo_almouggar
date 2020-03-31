@@ -2858,7 +2858,7 @@ class BaseModel(MetaModel('DummyModel', (object,), {'_register': False})):
                     values[name] = field.convert_to_read_json(record[name], record, use_name_get)
                 result.append(values)
             except MissingError:
-                pass
+                _logger.error("Error on read json : %s", e)
 
         return result
 
