@@ -479,8 +479,9 @@ class Partner(models.Model):
         sync_children = self.child_ids.filtered(lambda c: not c.is_company)
         for child in sync_children:
             child._commercial_sync_to_children()
+        res = sync_children.write(sync_vals)
         sync_children._compute_commercial_partner()
-        return sync_children.write(sync_vals)
+        return res
 
     @api.multi
     def _fields_sync(self, values):
@@ -800,7 +801,7 @@ class Partner(models.Model):
             partner_ids = [row[0] for row in self.env.cr.fetchall()]
 
             if partner_ids:
-                return self.browse(partner_ids).name_get()
+                return models.lazy_name_get(self.browse(partner_ids))
             else:
                 return []
         return super(Partner, self)._name_search(name, args, operator=operator, limit=limit, name_get_uid=name_get_uid)

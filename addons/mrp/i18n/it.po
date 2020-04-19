@@ -920,7 +920,7 @@ msgstr "Crea un nuovo ordine di produzione"
 #. module: mrp
 #: model_terms:ir.actions.act_window,help:mrp.mrp_routing_action
 msgid "Create a new routing"
-msgstr "Crea una nuova rotta di produzione"
+msgstr "Crea una nuovo ciclo di lavorazione"
 
 #. module: mrp
 #: model_terms:ir.actions.act_window,help:mrp.mrp_workcenter_action
@@ -1316,7 +1316,7 @@ msgstr "Followers"
 #: model:ir.model.fields,field_description:mrp.field_mrp_unbuild__message_channel_ids
 #: model:ir.model.fields,field_description:mrp.field_mrp_workorder__message_channel_ids
 msgid "Followers (Channels)"
-msgstr "Followers (Canali)"
+msgstr "Chi sta seguendo (canali)"
 
 #. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_mrp_bom__message_partner_ids
@@ -1324,7 +1324,7 @@ msgstr "Followers (Canali)"
 #: model:ir.model.fields,field_description:mrp.field_mrp_unbuild__message_partner_ids
 #: model:ir.model.fields,field_description:mrp.field_mrp_workorder__message_partner_ids
 msgid "Followers (Partners)"
-msgstr "Followers (Partner)"
+msgstr "Chi sta seguendo (partner)"
 
 #. module: mrp
 #: model_terms:ir.ui.view,arch_db:mrp.report_mrporder
@@ -1365,7 +1365,9 @@ msgstr "Specifica l'ordine di visualizzazione per una lista di distente base."
 #: model:ir.model.fields,help:mrp.field_mrp_routing_workcenter__sequence
 msgid ""
 "Gives the sequence order when displaying a list of routing Work Centers."
-msgstr "Fornisce l'ordine con cui i centri di lavoro vengono visualizzati."
+msgstr ""
+"Stabilisce l'ordine nel quale visualizzare un elenco dei centri di lavoro "
+"per il ciclo."
 
 #. module: mrp
 #: model:ir.model.fields,help:mrp.field_mrp_workcenter__sequence
@@ -1594,7 +1596,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:mrp.field_mrp_unbuild__message_is_follower
 #: model:ir.model.fields,field_description:mrp.field_mrp_workorder__message_is_follower
 msgid "Is Follower"
-msgstr "È Follower"
+msgstr "Sta seguendo"
 
 #. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_mrp_production__is_locked
@@ -2487,7 +2489,7 @@ msgstr "Scegli prima della rotta di produzione"
 #. module: mrp
 #: model:ir.model,name:mrp.model_stock_picking_type
 msgid "Picking Type"
-msgstr "Tipo Picking"
+msgstr "Tipo di prelievo"
 
 #. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_mrp_production__picking_ids
@@ -3049,18 +3051,18 @@ msgstr "Utente responsabile"
 #: model_terms:ir.ui.view,arch_db:mrp.mrp_routing_tree_view
 #: model_terms:ir.ui.view,arch_db:mrp.view_mrp_production_filter
 msgid "Routing"
-msgstr "Routing"
+msgstr "Ciclo di lavorazione"
 
 #. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_mrp_workcenter__routing_line_ids
 msgid "Routing Lines"
-msgstr "Linee della rotta"
+msgstr "Linee del ciclo di lavorazione"
 
 #. module: mrp
 #: model_terms:ir.ui.view,arch_db:mrp.mrp_routing_workcenter_form_view
 #: model_terms:ir.ui.view,arch_db:mrp.mrp_routing_workcenter_tree_view
 msgid "Routing Work Centers"
-msgstr "Linee di Lavorazione"
+msgstr "Centri di lavoro del ciclo"
 
 #. module: mrp
 #: model:ir.actions.act_window,name:mrp.mrp_routing_action
@@ -3069,7 +3071,7 @@ msgstr "Linee di Lavorazione"
 #: model_terms:ir.ui.view,arch_db:mrp.res_config_settings_view_form
 #: model_terms:ir.ui.view,arch_db:mrp.view_mrp_bom_filter
 msgid "Routings"
-msgstr "Routings"
+msgstr "Cicli di lavorazione"
 
 #. module: mrp
 #: model_terms:ir.actions.act_window,help:mrp.mrp_routing_action
@@ -4097,7 +4099,7 @@ msgstr "Strato di usura"
 #. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_mrp_document__website_id
 msgid "Website"
-msgstr "Sito Web"
+msgstr "Sito web"
 
 #. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_mrp_bom__website_message_ids

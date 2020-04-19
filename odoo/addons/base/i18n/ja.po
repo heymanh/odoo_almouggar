@@ -81,6 +81,10 @@ msgid ""
 "Allow cashier to reprint receipts\n"
 "\n"
 msgstr ""
+"\n"
+"\n"
+"レジでのレシート再発行を許可\n"
+"\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_l10n_hu
@@ -8658,7 +8662,7 @@ msgstr "金額の前"
 #, python-format
 msgid ""
 "Before clicking on 'Change Password', you have to write a new password."
-msgstr ""
+msgstr "[パスワードの変更]をクリックする前に、新しいパスワードを作成する必要があります。"
 
 #. module: base
 #: model:res.country,name:base.by
@@ -18904,12 +18908,12 @@ msgstr "パスワード"
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_auth_password_policy
 msgid "Password Policy"
-msgstr ""
+msgstr "パスワードに関する政策"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_auth_password_policy_signup
 msgid "Password Policy support for Signup"
-msgstr ""
+msgstr "登録為のパスワードサポートポリシー"
 
 #. module: base
 #: model:ir.model.fields,field_description:base.field_ir_logging__path
@@ -20951,7 +20955,7 @@ msgstr "アクティブでない通貨を表示"
 #. module: base
 #: model_terms:ir.ui.view,arch_db:base.view_base_module_uninstall
 msgid "Show technical modules"
-msgstr ""
+msgstr "技術モジュールを表示"
 
 #. module: base
 #: model:ir.module.module,summary:base.module_website_google_map
@@ -23965,7 +23969,7 @@ msgstr "ユーザタイプ"
 #. module: base
 #: model:ir.model,name:base.model_change_password_user
 msgid "User, Change Password Wizard"
-msgstr ""
+msgstr "ユーザー、パスワード変更のウィザード"
 
 #. module: base
 #: model:ir.actions.act_window,name:base.ir_default_menu_action
