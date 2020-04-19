@@ -107,7 +107,7 @@ def _build_url_w_params(url_string, query_params, remove_duplicates=True):
 class CustomerPortal(Controller):
 
     MANDATORY_BILLING_FIELDS = ["name", "phone", "email", "street", "city", "country_id"]
-    OPTIONAL_BILLING_FIELDS = ["zipcode", "state_id", "vat", "company_name"]
+    OPTIONAL_BILLING_FIELDS = ["zipcode", "state_id", "vat", "company_name", "politique", "newsletter"]
 
     _items_per_page = 20
 
@@ -165,6 +165,11 @@ class CustomerPortal(Controller):
                 values = {key: post[key] for key in self.MANDATORY_BILLING_FIELDS}
                 values.update({key: post[key] for key in self.OPTIONAL_BILLING_FIELDS if key in post})
                 values.update({'zip': values.pop('zipcode', '')})
+                # MAJ politque confidentialité et newsletter
+                request.env.user.write({
+                    'newsletter': values['newsletter'] if 'newsletter' in values else False,
+                    'politique': values['politique'] if 'politique' in values else False
+                })
                 partner.sudo().write(values)
                 if redirect:
                     return request.redirect(redirect)
@@ -175,6 +180,8 @@ class CustomerPortal(Controller):
 
         values.update({
             'partner': partner,
+            'newsletter': request.env.user.newsletter,
+            'politique': request.env.user.politique,
             'countries': countries,
             'states': states,
             'has_check_vat': hasattr(request.env['res.partner'], 'check_vat'),
