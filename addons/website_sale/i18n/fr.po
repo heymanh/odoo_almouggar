@@ -236,7 +236,7 @@ msgid ""
 "                                    <span>Return to Cart</span>"
 msgstr ""
 "<i class=\"fa fa-chevron-left\"/>\n"
-"                                    <span>Revenir au Panier</span>"
+"                                    <span>RETOUR PANIER</span>"
 
 #. module: website_sale
 #: model_terms:ir.ui.view,arch_db:website_sale.payment
@@ -2026,7 +2026,7 @@ msgstr "Limiter la publication sur ce site web."
 #. module: website_sale
 #: model_terms:ir.ui.view,arch_db:website_sale.payment
 msgid "Return to Cart"
-msgstr ""
+msgstr "RETOUR PANIER"
 
 #. module: website_sale
 #: model_terms:ir.ui.view,arch_db:website_sale.404
