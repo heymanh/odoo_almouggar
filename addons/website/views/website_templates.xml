@@ -277,7 +277,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 text-muted text-center text-md-left">
-                        <span>Copyright &amp;copy;</span> <span t-field="res_company.name" itemprop="name">Company name</span>
+                        <span>Copyright &amp;copy;</span> <span t-field="res_company.web_name" itemprop="name">Company name</span>
                         <t t-call="website.language_selector"/>
                     </div>
                     <div class="col-lg-6 text-right o_not_editable" t-if="not editable">

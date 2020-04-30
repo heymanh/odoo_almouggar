@@ -869,7 +869,7 @@ class SeoMetadata(models.AbstractModel):
         default_opengraph = {
             'og:type': 'website',
             'og:title': title,
-            'og:site_name': company.name,
+            'og:site_name': company.web_name,
             'og:url': request.httprequest.url,
             'og:image': img,
         }
