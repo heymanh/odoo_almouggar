@@ -142,7 +142,7 @@
             'data-view-xmlid': xmlid if editable or translatable else None,
             'data-viewid': viewid if editable or translatable else None,
             'data-main-object': repr(main_object) if editable or translatable else None,
-            'data-oe-company-name': res_company.name
+            'data-oe-company-name': res_company.web_name
         }"/>
         <t t-if="not title">
             <t t-if="main_object and 'website_meta_title' in main_object and main_object.website_meta_title">
