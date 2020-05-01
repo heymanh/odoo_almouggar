@@ -2585,6 +2585,18 @@ msgstr "Identifiant Paypal du vendeur"
 msgid "Paypal PDT Token"
 msgstr "Jeton PDT Paypal"
 
+msgid "Pending Orders #"
+msgstr "En Attente #"
+
+msgid "Pending Orders"
+msgstr "En Attente"
+
+msgid "Orders #"
+msgstr "Commandes #"
+
+msgid "Orders"
+msgstr "Commandes"
+
 #. module: sale
 #: selection:crm.team,dashboard_graph_model:0
 msgid "Pipeline"
