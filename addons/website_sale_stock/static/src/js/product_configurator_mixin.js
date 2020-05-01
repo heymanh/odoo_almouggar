@@ -11,6 +11,18 @@ var xml_load = ajax.loadXML(
     QWeb
 );
 
+const DAYS = [
+    ['Sunday', 'dimanche'],
+    ['Monday', 'lundi'],
+    ['Tuesday', 'mardi'],
+    ['Wednesday', 'mercredi'],
+    ['Thursday', 'jeudi'],
+    ['Friday', 'vendredi'],
+    ['Saturday', 'samedi']
+]
+const DEMAIN = ['tomorrow', 'demain']
+const LANG = {'en-US':0, 'fr-FR':1}
+
 /**
  * Addition to the product_configurator_mixin._onChangeCombination
  *
@@ -62,16 +74,63 @@ ProductConfiguratorMixin._onChangeCombinationStock = function (ev, $parent, comb
         }
     }
 
+    var addBusinessDays = function(d,n) {
+        d = new Date(d.getTime());
+        var day = d.getDay();
+        d.setDate(d.getDate() + n + !day + (Math.floor((n - 1 + (day % 6 || 1)) / 6)));
+        return d;
+    }
+
     xml_load.then(function () {
         $('.oe_website_sale')
             .find('.availability_message_' + combination.product_template)
             .remove();
-
         var $message = $(QWeb.render(
             'website_sale_stock.product_availability',
             combination
         ));
         $('div.availability_messages').html($message);
+
+        $('.oe_website_sale')
+            .find('.seller_messages' + combination.product_template)
+            .remove();
+        var $message = $(QWeb.render(
+            'website_sale_stock.seller_message',
+            combination
+        ));
+        $('div.seller_messages').html($message);
+
+        if (combination["virtual_available"]>0){
+
+            var limit_date_for_today_express_delivery = new Date()
+            limit_date_for_today_express_delivery.setHours(14,0,0)
+
+            var limit_date_for_today_normal_delivery = new Date()
+            limit_date_for_today_normal_delivery.setHours(23, 0, 0)
+
+            var now = new Date();
+            var amana_expected_delivery_date = new Date()
+            var express_delivery_date = new Date()
+            if (now > limit_date_for_today_express_delivery || now.getDay() === 0) {
+                express_delivery_date = addBusinessDays(express_delivery_date, 1)
+            }
+            if (now > limit_date_for_today_normal_delivery) {
+                amana_expected_delivery_date.setDate(+1)
+            }
+            var amana_expected_delivery_date = addBusinessDays(new Date(), 3)
+
+            var langue = $('html').attr('lang')
+            combination["amana_expected_delivery_date"] = DAYS[amana_expected_delivery_date.getDay()][LANG[langue]]
+            combination["express_delivery_date"] = express_delivery_date.getDay() == now.getDay()+1 ? DEMAIN[LANG[langue]]: DAYS[express_delivery_date.getDay()][LANG[langue]]
+        }
+        $('.oe_website_sale')
+                .find('.delivery_messages' + combination.product_template)
+                .remove();
+            var $message = $(QWeb.render(
+                'website_sale_stock.delivery_message',
+                combination
+            ));
+            $('div.delivery_messages').html($message);
     });
 };
 

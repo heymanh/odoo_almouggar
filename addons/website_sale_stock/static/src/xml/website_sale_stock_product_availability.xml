@@ -26,4 +26,22 @@
         </div>
     </t>
 
+    <t t-name="website_sale_stock.seller_message">
+        <t t-if="virtual_available gt 0">
+            <div t-attf-class="seller_message_#{product_template}">
+                <div>Vendu et expédié par <a style="color:black;text-decoration: underline;" href="/nos-magasins">Almouggar Livre</a></div>
+                <div>Retrait gratuit sous 3H chez notre partenaire</div>
+            </div>
+        </t>
+    </t>
+
+    <t t-name="website_sale_stock.delivery_message">
+        <t t-if="virtual_available gt 0">
+            <div t-attf-class="delivery_message_#{product_template}">
+                <div style="font-size:16px;">Livraison d'ici <span t-attr-class="almouggar-cool-info"><t  t-esc="amana_expected_delivery_date" /></span>, ou <span t-attr-class="almouggar-cool-info"><t t-esc="express_delivery_date"/></span> si vous choisissez la livraison en express sur Agadir!</div>
+            </div>
+            <br/>
+        </t>
+    </t>
+
 </templates>
