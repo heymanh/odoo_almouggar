@@ -72,7 +72,7 @@
                                         </td>
                                         <td class='text-center td-wish-btn'>
                                             <input name="product_id" t-att-value="wish.product_id.id" type="hidden"/>
-                                            <button type="button" role="button" class="btn btn-secondary btn-block o_wish_add mb4" >Add <span class='d-none d-md-inline'>to Cart</span></button>
+                                            <button type="button" role="button" class="btn btn-secondary btn-block o_wish_add mb4" >Add to Cart</button>
                                         </td>
                                     </tr>
                                 </t>
