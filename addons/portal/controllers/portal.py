@@ -106,8 +106,8 @@ def _build_url_w_params(url_string, query_params, remove_duplicates=True):
 
 class CustomerPortal(Controller):
 
-    MANDATORY_BILLING_FIELDS = ["name", "phone", "email", "street", "city", "country_id"]
-    OPTIONAL_BILLING_FIELDS = ["zipcode", "state_id", "vat", "company_name", "politique", "newsletter"]
+    MANDATORY_BILLING_FIELDS = ["firstname", "lastname", "phone", "email", "street", "city", "country_id", "zipcode"]
+    OPTIONAL_BILLING_FIELDS = ["state_id", "vat", "company_name", "politique", "newsletter"]
 
     _items_per_page = 20
 
