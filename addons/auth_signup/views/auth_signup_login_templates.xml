@@ -2,9 +2,14 @@
 <odoo>
         <template id="auth_signup.login" inherit_id="web.login" name="Sign up - Reset Password">
             <xpath expr="//button[@type='submit']" position="after">
-                <div class="justify-content-between mt-2 d-flex small">
-                    <a t-if="signup_enabled" style="font-size:13px;font-weight:bold;" t-attf-href="/web/signup?{{ keep_query() }}">Don't have an account?</a>
+                <div class="mt-1 small">
                     <a t-if="reset_password_enabled" t-attf-href="/web/reset_password?{{ keep_query() }}">Reset Password</a>
+<!--                    <a t-if="signup_enabled" style="font-size:13px;font-weight:bold;" t-attf-href="/web/signup?{{ keep_query() }}">Don't have an account?</a>-->
+                </div>
+                <br/>
+                <h5 style="border-bottom-color: #0000001a;" class="line_break"><span class="text_line_break">Nouveau chez ALMOUGGAR.COM ?</span></h5>
+                <div t-attf-class="clearfix oe_login_buttons text-center mb-1 {{'pt-2' if form_small else 'pt-3'}}">
+                    <a class="alm_create_account btn btn-primary" t-attf-href="/web/signup?{{ keep_query() }}" role="button">Creer votre compte</a>
                 </div>
             </xpath>
         </template>
