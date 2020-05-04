@@ -75,7 +75,7 @@ msgid ""
 "<i class=\"fa fa-check text-success\" title=\"This payment method is "
 "verified by our system.\" role=\"img\" aria-label=\"Ok\"/>"
 msgstr ""
-"<i class=\"fa fa-check text-success\" title=\"Cette méthode de payement est "
+"<i class=\"fa fa-check text-success\" title=\"Cette méthode de paiement est "
 "verifiee par notre systeme\" role=\"img\" aria-label=\"Ok\"/>"
 
 #. module: payment
@@ -84,7 +84,7 @@ msgid ""
 "<i class=\"fa fa-close text-danger\" title=\"This payment method has not "
 "been verified by our system.\" role=\"img\" aria-label=\"Not verified\"/>"
 msgstr ""
-"<i class=\"fa fa-close text-danger\" title=\"Cette méthode de payement est "
+"<i class=\"fa fa-close text-danger\" title=\"Cette méthode de paiement est "
 "verifiée par notre systeme\" role=\"img\" aria-label=\"Pas verifiee\"/>"
 
 #. module: payment
@@ -409,7 +409,7 @@ msgstr "Montant"
 #: code:addons/payment/static/src/xml/payment_processing.xml:17
 #, python-format
 msgid "An error occured during the processing of this payment."
-msgstr "Une erreur est survenue lors du traitement du payement "
+msgstr "Une erreur est survenue lors du traitement du paiement "
 
 #. module: payment
 #: model_terms:ir.ui.view,arch_db:payment.payment_acquirer_onboarding_wizard_form
@@ -513,7 +513,7 @@ msgstr "Annulé"
 #: code:addons/payment/static/src/xml/payment_processing.xml:109
 #, python-format
 msgid "Cancelled payments"
-msgstr "Payements annulés"
+msgstr "Paiements annulés"
 
 #. module: payment
 #. openerp-web
@@ -2010,7 +2010,7 @@ msgstr "Nous ne pouvons pas vous rediriger vers le formulaire de paiement."
 #: code:addons/payment/static/src/js/payment_processing.js:117
 #, python-format
 msgid "We are processing your payments, please wait ..."
-msgstr "Votre payement est en cours de traitement, veuillez patienter..."
+msgstr "Votre paiement est en cours de traitement, veuillez patienter..."
 
 #. module: payment
 #. openerp-web
@@ -2163,14 +2163,14 @@ msgstr "Votre paiement a été autorisé."
 #, python-format
 msgid "Your payment has been received but need to be confirmed manually."
 msgstr ""
-"Votre payement a été reçu mais doit encore être confirmée manuellement."
+"Votre paiement a été reçu mais doit encore être confirmée manuellement."
 
 #. module: payment
 #. openerp-web
 #: code:addons/payment/static/src/xml/payment_processing.xml:57
 #, python-format
 msgid "Your payment is in pending state."
-msgstr "Votre payement est en attente"
+msgstr "Votre paiement est en attente"
 
 #. module: payment
 #: model_terms:ir.ui.view,arch_db:payment.transaction_form

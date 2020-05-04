@@ -1515,7 +1515,7 @@ msgstr "Activités futures"
 msgid ""
 "Generate the invoice automatically when the online payment is confirmed"
 msgstr ""
-"Générer la facture automatiquement lorsque le payement en ligne est "
+"Générer la facture automatiquement lorsque le paiement en ligne est "
 "confirmé."
 
 #. module: sale

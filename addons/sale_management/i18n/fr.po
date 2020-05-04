@@ -450,7 +450,7 @@ msgid ""
 "Request an online payment to the customer in order to confirm orders "
 "automatically."
 msgstr ""
-"Nécessite un payement en ligne de la part du client pour confirmer la "
+"Nécessite un paiement en ligne de la part du client pour confirmer la "
 "commande automatiquement."
 
 #. module: sale_management
