@@ -142,7 +142,7 @@
             'data-view-xmlid': xmlid if editable or translatable else None,
             'data-viewid': viewid if editable or translatable else None,
             'data-main-object': repr(main_object) if editable or translatable else None,
-            'data-oe-company-name': res_company.web_name if res_company.web_name else res_company.name
+            'data-oe-company-name': res_company.web_name
         }"/>
         <t t-if="not title">
             <t t-if="main_object and 'website_meta_title' in main_object and main_object.website_meta_title">
@@ -277,7 +277,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 text-muted text-center text-md-left">
-                        <span>Copyright &amp;copy;</span> <span t-field="res_company.web_name if res_company.web_name else res_company.name " itemprop="name">Company name</span>
+                        <span>Copyright &amp;copy;</span> <span t-field="res_company.web_name" itemprop="name">Company name</span>
                         <t t-call="website.language_selector"/>
                     </div>
                     <div class="col-lg-6 text-right o_not_editable" t-if="not editable">
