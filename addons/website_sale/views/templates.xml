@@ -1096,7 +1096,7 @@
                                     <i class="fa fa-chevron-left"/>
                                     <span>Return to Cart</span>
                                 </a>
-                                <a role="button" href="/shop/confirm_order" class="btn btn-primary mb32">
+                                <a role="button" href="/shop/confirm_order" class="alm_soleil btn btn-primary mb32">
                                     <span>Confirm</span>
                                     <i class="fa fa-chevron-right"/>
                                 </a>
