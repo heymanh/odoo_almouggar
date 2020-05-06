@@ -1163,7 +1163,7 @@ msgstr "Aucun paiement n'a été traité."
 #: code:addons/payment/static/src/js/payment_form.js:310
 #, python-format
 msgid "No payment method selected"
-msgstr "Aucune méthode de paiement sélectionnée"
+msgstr "Merci de choisir une méthode de paiement"
 
 #. module: payment
 #: selection:res.company,payment_acquirer_onboarding_state:0
