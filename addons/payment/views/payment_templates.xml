@@ -47,20 +47,42 @@
                     <div class="card-body">
                         <label>
                             <t t-if="acq.payment_flow == 'form'">
-                                <input type="radio" t-att-data-acquirer-id="acq.id"
-                                       t-att-data-form-payment="true"
-                                       t-att-data-provider="acq.provider"
-                                       t-att-class="'d-none' if (acquirers_count==1 and pms_count==0) else ''"
-                                       name="pm_id" t-attf-value="form_{{acq.id}}"
-                                       t-att-checked="acquirers_count==1 and pms_count==0 or acquirers[0] == acq"/>
+                                <t t-if="acq.delivery_specific_id">
+                                    <input type="radio" t-att-data-acquirer-id="acq.id"
+                                           t-att-data-delivery-specific-id="acq.delivery_specific_id.id"
+                                           t-att-data-form-payment="true"
+                                           t-att-data-provider="acq.provider"
+                                           t-att-class="'d-none' if (acquirers_count==1 and pms_count==0) else ''"
+                                           name="pm_id" t-attf-value="form_{{acq.id}}"
+                                           t-att-checked="acquirers_count==1 and pms_count==0 or acquirers[0] == acq"/>
+                                </t>
+                                <t t-else="!acq.delivery_specific_id">
+                                    <input type="radio" t-att-data-acquirer-id="acq.id"
+                                           t-att-data-form-payment="true"
+                                           t-att-data-provider="acq.provider"
+                                           t-att-class="'d-none' if (acquirers_count==1 and pms_count==0) else ''"
+                                           name="pm_id" t-attf-value="form_{{acq.id}}"
+                                           t-att-checked="acquirers_count==1 and pms_count==0 or acquirers[0] == acq"/>
+                                </t>
                             </t>
                             <t t-else="acq.payment_flow == 's2s'">
-                                <input type="radio" t-att-data-acquirer-id="acq.id"
-                                       t-att-data-s2s-payment="true"
-                                       t-att-data-provider="acq.provider"
-                                       name="pm_id" t-attf-value="new_{{acq.id}}"
-                                       t-att-class="'d-none' if (acquirers_count==1 and pms_count==0) else ''"
-                                       t-att-checked="acquirers_count==1 and pms_count==0 or acquirers[0] == acq"/>
+                                <t t-if="acq.delivery_specific_id">
+                                    <input type="radio" t-att-data-acquirer-id="acq.id"
+                                           t-att-data-delivery-specific-id="acq.delivery_specific_id.id"
+                                           t-att-data-s2s-payment="true"
+                                           t-att-data-provider="acq.provider"
+                                           name="pm_id" t-attf-value="new_{{acq.id}}"
+                                           t-att-class="'d-none' if (acquirers_count==1 and pms_count==0) else ''"
+                                           t-att-checked="acquirers_count==1 and pms_count==0 or acquirers[0] == acq"/>
+                                </t>
+                                <t t-else="!acq.delivery_specific_id">
+                                    <input type="radio" t-att-data-acquirer-id="acq.id"
+                                           t-att-data-s2s-payment="true"
+                                           t-att-data-provider="acq.provider"
+                                           name="pm_id" t-attf-value="new_{{acq.id}}"
+                                           t-att-class="'d-none' if (acquirers_count==1 and pms_count==0) else ''"
+                                           t-att-checked="acquirers_count==1 and pms_count==0 or acquirers[0] == acq"/>
+                                </t>
                             </t>
                             <span class="payment_option_name" t-esc="acq.name"/>
                         </label>
