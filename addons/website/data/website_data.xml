@@ -57,8 +57,49 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
-                                        <t t-call="website.company_description"/>
+                                <address itemscope="itemscope" itemtype="http://schema.org/Organization">
+                                    <div data-oe-model="res.company" data-oe-id="1" data-oe-field="partner_id"
+                                         data-oe-type="contact" data-oe-expression="res_company.partner_id"
+                                         data-oe-many2one-id="1" data-oe-many2one-model="res.partner"
+                                         data-oe-contact-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;name&quot;, &quot;address&quot;, &quot;phone&quot;, &quot;mobile&quot;, &quot;email&quot;], &quot;tagName&quot;: &quot;div&quot;, &quot;expression&quot;: &quot;res_company.partner_id&quot;, &quot;type&quot;: &quot;contact&quot;, &quot;inherit_branding&quot;: true, &quot;translate&quot;: false}">
+                                        <address class="mb0" itemscope="itemscope"
+                                                 itemtype="http://schema.org/Organization">
+                                            <div>
+                                                <span itemprop="name">ALMOUGGAR.COM</span>
+                                            </div>
+                                            <div itemprop="address" itemscope="itemscope"
+                                                 itemtype="http://schema.org/PostalAddress">
+                                                <div>
+                                                    <i class="fa fa-map-marker fa-fw" role="img" aria-label="Address"
+                                                       title="Address"></i>
+                                                    <span itemprop="streetAddress">IMM "G" N°17 AVENUE DU PRINCE MOULAY ABDALLAH
+                                                        <br/>Agadir 80000<br/>Maroc
+                                                    </span>
+                                                </div>
+                                                <div>
+                                                    <i class="fa fa-phone fa-fw" role="img" aria-label="Phone"
+                                                       title="Phone"></i>
+                                                    <span class="o_force_ltr" itemprop="telephone">+ 212 528 84 27 12
+                                                    </span>
+                                                </div>
+                                                <div>
+                                                    <i class="fa fa-envelope fa-fw" role="img" aria-label="Email"
+                                                       title="Email"></i>
+                                                    <span itemprop="email">contact@almouggar.com</span>
+                                                </div>
+                                            </div>
+                                        </address>
                                     </div>
+                                    <span class="fa fa-map-marker fa-fw mt16" role="img" aria-label="Adresse"
+                                          title="Adresse" data-oe-model="ir.ui.view" data-oe-id="1319"
+                                          data-oe-field="arch" data-oe-xpath="/t[1]/address[1]/t[1]/span[1]"></span>
+                                    <a target="_BLANK" data-oe-model="ir.ui.view" data-oe-id="1319" data-oe-field="arch"
+                                       data-oe-xpath="/t[1]/address[1]/t[1]/a[1]"
+                                       href="https://maps.google.com/maps?q=Imm+%22G%22+Avenue+du+Prince+Moulay+Abdallah%2C+Agadir+80000%2C+Maroc&amp;z=8">
+                                        Google Maps
+                                    </a>
+                                </address>
+                            </div>
                                 </div>
                             </div>
                             <div class="oe_structure mt-2"/>
