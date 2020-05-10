@@ -112,12 +112,12 @@ ProductConfiguratorMixin._onChangeCombinationStock = function (ev, $parent, comb
             var amana_expected_delivery_date = new Date()
             var express_delivery_date = new Date()
             if (now > limit_date_for_today_express_delivery || now.getDay() === 0) {
-                express_delivery_date = addBusinessDays(express_delivery_date, 1)
+                express_delivery_date = addBusinessDays(express_delivery_date, 0)
             }
             if (now > limit_date_for_today_normal_delivery) {
                 amana_expected_delivery_date.setDate(+1)
             }
-            var amana_expected_delivery_date = addBusinessDays(new Date(), 3)
+            var amana_expected_delivery_date = addBusinessDays(new Date(), 2)
 
             var langue = $('html').attr('lang')
             combination["amana_expected_delivery_date"] = DAYS[amana_expected_delivery_date.getDay()][LANG[langue]]
