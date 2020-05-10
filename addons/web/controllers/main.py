@@ -476,6 +476,10 @@ class Home(http.Controller):
         if request.httprequest.method == 'GET' and redirect and request.session.uid:
             return http.redirect_with_hash(redirect)
 
+        # Si utilisateur déjà connecté redirige sur la page principale
+        if request.httprequest.method == 'GET' and request.session.uid:
+            return http.redirect_with_hash('/')
+
         if not request.uid:
             request.uid = odoo.SUPERUSER_ID
 
