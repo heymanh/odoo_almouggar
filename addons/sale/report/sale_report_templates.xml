@@ -25,17 +25,22 @@
         </t>
         <div class="page">
             <div class="oe_structure"/>
-
-            <h2>
+            <br/>
+            <h4>
                 <t t-if="not (env.context.get('proforma', False) or is_pro_forma)">
-                    <span t-if="doc.state not in ['draft','sent']">Order # </span>
-                    <span t-if="doc.state in ['draft','sent']">Quotation # </span>
+                    <t t-if="doc.team_id.team_type == 'website'">
+                        <span t-if="doc.state not in ['draft','sent']">Commande # </span>
+                        <span t-if="doc.state in ['draft','sent']">Commande en attente de paiement # </span>
+                    </t><t t-if="doc.team_id.team_type != 'website'">
+                        <span t-if="doc.state not in ['draft','sent']">Order # </span>
+                        <span t-if="doc.state in ['draft','sent']">Quotation # </span>
+                    </t>
                 </t>
                 <t t-if="env.context.get('proforma', False) or is_pro_forma">
-                    <span>Pro-Forma Invoice # </span>
+                    <span>Pro-Forma Invoice # </span>Commande #
                 </t>
                 <span t-field="doc.name"/>
-            </h2>
+            </h4>
 
             <div class="row mt32 mb32" id="informations">
                 <div t-if="doc.client_order_ref" class="col-auto mw-100 mb-2">
@@ -46,10 +51,17 @@
                     <strong>Date Ordered:</strong>
                     <p class="m-0" t-field="doc.confirmation_date"/>
                 </div>
-                <div t-if="doc.date_order and doc.state in ['draft','sent']" class="col-auto mw-100 mb-2">
-                    <strong>Quotation Date:</strong>
-                    <p class="m-0" t-field="doc.date_order"/>
-                </div>
+
+                        <div t-if="doc.date_order and doc.state in ['draft','sent']" class="col-auto mw-100 mb-2">
+                            <t t-if="doc.team_id.team_type == 'website'">
+                                <strong>Date:</strong>
+                             </t>
+                             <t t-if="doc.team_id.team_type != 'website'">
+                                <strong>Quotation Date:</strong>
+                             </t>
+                            <p class="m-0" t-field="doc.date_order"/>
+                        </div>
+
                 <div t-if="doc.user_id.name" class="col-auto mw-100 mb-2">
                     <strong>Salesperson:</strong>
                     <p class="m-0" t-field="doc.user_id"/>

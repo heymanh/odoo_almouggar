@@ -8,7 +8,7 @@
             report_type="qweb-pdf"
             file="sale.report_saleorder" 
             name="sale.report_saleorder"
-            print_report_name="(object.state in ('draft', 'sent') and 'Quotation - %s' % (object.name)) or 'Order - %s' % (object.name)"
+            print_report_name="(object.state in ('draft', 'sent') and 'dev - %s' % (object.name)) or 'Order - %s' % (object.name)"
         />
 
         <report
