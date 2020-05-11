@@ -50,6 +50,7 @@
                                 <t t-if="acq.delivery_specific_id">
                                     <input type="radio" t-att-data-acquirer-id="acq.id"
                                            t-att-data-delivery-specific-id="acq.delivery_specific_id.id"
+                                           t-att-data-delivery-unique="acq.is_unique_payment_acquirer"
                                            t-att-data-form-payment="true"
                                            t-att-data-provider="acq.provider"
                                            t-att-class="'d-none' if (acquirers_count==1 and pms_count==0) else ''"
@@ -69,6 +70,7 @@
                                 <t t-if="acq.delivery_specific_id">
                                     <input type="radio" t-att-data-acquirer-id="acq.id"
                                            t-att-data-delivery-specific-id="acq.delivery_specific_id.id"
+                                           t-att-data-delivery-unique="acq.is_unique_payment_acquirer"
                                            t-att-data-s2s-payment="true"
                                            t-att-data-provider="acq.provider"
                                            name="pm_id" t-attf-value="new_{{acq.id}}"
