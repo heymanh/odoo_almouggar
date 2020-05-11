@@ -3,12 +3,14 @@
 
 from odoo import models
 
+# AVAILABLE_COUNTRIES = ['MA', 'FR', 'ES', 'PT', 'DE']
+AVAILABLE_COUNTRIES = ['MA']
 
 class ResCountry(models.Model):
     _inherit = 'res.country'
 
     def get_website_sale_countries(self, mode='billing'):
-        return self.sudo().search([])
+        return self.sudo().search([('code', 'in', AVAILABLE_COUNTRIES)])
 
     def get_website_sale_states(self, mode='billing'):
         return self.sudo().state_ids
