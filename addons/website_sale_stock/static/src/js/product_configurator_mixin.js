@@ -77,7 +77,11 @@ ProductConfiguratorMixin._onChangeCombinationStock = function (ev, $parent, comb
     var addBusinessDays = function(d,n) {
         d = new Date(d.getTime());
         var day = d.getDay();
-        d.setDate(d.getDate() + n + !day + (Math.floor((n - 1 + (day % 6 || 1)) / 6)));
+        var un_jour_supp = 0
+        if (day == 6 || day == 0){
+            un_jour_supp = 1
+        }
+        d.setDate(d.getDate() + n + un_jour_supp );
         return d;
     }
 
@@ -112,12 +116,12 @@ ProductConfiguratorMixin._onChangeCombinationStock = function (ev, $parent, comb
             var amana_expected_delivery_date = new Date()
             var express_delivery_date = new Date()
             if (now > limit_date_for_today_express_delivery || now.getDay() === 0) {
-                express_delivery_date = addBusinessDays(express_delivery_date, 0)
+                express_delivery_date = addBusinessDays(express_delivery_date, 1)
             }
             if (now > limit_date_for_today_normal_delivery) {
                 amana_expected_delivery_date.setDate(+1)
             }
-            var amana_expected_delivery_date = addBusinessDays(new Date(), 2)
+            var amana_expected_delivery_date = addBusinessDays(new Date(), 3)
 
             var langue = $('html').attr('lang')
             combination["amana_expected_delivery_date"] = DAYS[amana_expected_delivery_date.getDay()][LANG[langue]]
