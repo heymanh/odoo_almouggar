@@ -21,6 +21,7 @@ const DAYS = [
     ['Saturday', 'samedi']
 ]
 const DEMAIN = ['tomorrow', 'demain']
+const AUJOURDHUI = ['today', 'aujourd\'hui']
 const LANG = {'en-US':0, 'fr-FR':1}
 
 /**
@@ -125,7 +126,13 @@ ProductConfiguratorMixin._onChangeCombinationStock = function (ev, $parent, comb
 
             var langue = $('html').attr('lang')
             combination["amana_expected_delivery_date"] = DAYS[amana_expected_delivery_date.getDay()][LANG[langue]]
-            combination["express_delivery_date"] = express_delivery_date.getDay() == now.getDay()+1 ? DEMAIN[LANG[langue]]: DAYS[express_delivery_date.getDay()][LANG[langue]]
+            if (express_delivery_date.getDay()==now.getDay()){
+                combination["express_delivery_date"] = AUJOURDHUI[LANG[langue]]
+            }else if(express_delivery_date.getDay() == now.getDay()+1 ){
+                combination["express_delivery_date"] = DEMAIN[LANG[langue]]
+            }else{
+                combination["express_delivery_date"] = DAYS[express_delivery_date.getDay()][LANG[langue]]
+            }
         }
         $('.oe_website_sale')
                 .find('.delivery_messages' + combination.product_template)
