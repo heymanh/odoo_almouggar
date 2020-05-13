@@ -990,10 +990,10 @@ class WebsiteSale(ProductConfiguratorController):
         PaymentProcessing.remove_payment_transaction(tx)
         return request.redirect('/shop/confirmation')
 
-
-    @http.route(['/shop/terms'], type='http', auth="public", website=True)
-    def terms(self, **kw):
-        return request.render("website_sale.terms")
+     # Page non utilisée
+     #@http.route(['/shop/terms'], type='http', auth="public", website=True, sitemap=False)
+     #def terms(self, **kw):
+     #    return request.render("website_sale.terms")
 
     @http.route(['/shop/confirmation'], type='http', auth="public", website=True, sitemap=False)
     def payment_confirmation(self, **post):
