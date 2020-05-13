@@ -192,7 +192,7 @@ class Website(Home):
 
         return request.make_response(content, [('Content-Type', mimetype)])
 
-    @http.route('/website/info', type='http', auth="public", website=True)
+    @http.route('/website/info', type='http', auth="public", website=True, sitemap=False)
     def website_info(self, **kwargs):
         try:
             request.website.get_template('website.website_info').name
