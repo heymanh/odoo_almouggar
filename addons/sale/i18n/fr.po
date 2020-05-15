@@ -3875,7 +3875,7 @@ msgstr ""
 #. module: sale
 #: model_terms:ir.ui.view,arch_db:sale.product_configurator_configure
 msgid "This product has no valid combination."
-msgstr "Ce produit n'a pas de combinaison existante"
+msgstr "Ce produit n'a pas de combinaison valide"
 
 #. module: sale
 #: model_terms:ir.actions.act_window,help:sale.action_order_report_all

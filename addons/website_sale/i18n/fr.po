@@ -2424,12 +2424,13 @@ msgstr "Les informations du QR Code ne sont pas correctement configurées."
 msgid ""
 "The given combination does not exist therefore it cannot be added to cart."
 msgstr ""
+"Cette combinaison n'existe pas, elle ne peut donc pas être ajoutée au panier."
 
 #. module: website_sale
 #: code:addons/website_sale/models/sale_order.py:184
 #, python-format
 msgid "The given product does not exist therefore it cannot be added to cart."
-msgstr ""
+msgstr "Ce produit n'existe pas, il ne peut donc pas être ajouté au panier."
 
 #. module: website_sale
 #: model_terms:ir.ui.view,arch_db:website_sale.res_config_settings_view_form
@@ -2511,12 +2512,12 @@ msgstr "Voici votre panier actuel."
 #. module: website_sale
 #: model_terms:ir.ui.view,arch_db:website_sale.product
 msgid "This product has no valid combination."
-msgstr "Ce produit n'a pas de combinaison existante"
+msgstr "Ce produit n'a pas de combinaison valide"
 
 #. module: website_sale
 #: model_terms:ir.ui.view,arch_db:website_sale.product
 msgid "This product is no longer available."
-msgstr ""
+msgstr "Ce produit n'est plus disponible."
 
 #. module: website_sale
 #: model_terms:ir.ui.view,arch_db:website_sale.products_item

@@ -40,7 +40,7 @@ msgstr "<small><i class=\"fa fa-trash-o\"/> Supprimer</small>"
 #: model_terms:ir.ui.view,arch_db:website_sale_wishlist.add_to_wishlist
 #: model_terms:ir.ui.view,arch_db:website_sale_wishlist.product_add_to_wishlist
 msgid "<span class=\"fa fa-heart\" role=\"img\" aria-label=\"Add to wishlist\"/>"
-msgstr ""
+msgstr "<span class=\"fa fa-heart\" role=\"img\" aria-label=\"Ajouter à la liste d'envie\"/>"
 
 #. module: website_sale_wishlist
 #: model:ir.model.fields,field_description:website_sale_wishlist.field_product_wishlist__active
@@ -56,7 +56,7 @@ msgstr "Ajouter"
 #: model_terms:ir.ui.view,arch_db:website_sale_wishlist.product_wishlist
 msgid "Add product to my cart but keep it in my wishlist"
 msgstr ""
-"Ajouter le produit au panier mais le sauvegarder dans la liste d'envies"
+"Ajouter le produit au panier tout en le maintenant dans la liste d'envies"
 
 #. module: website_sale_wishlist
 #: model_terms:ir.ui.view,arch_db:website_sale_wishlist.add_to_wishlist
