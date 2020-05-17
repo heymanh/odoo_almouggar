@@ -75,15 +75,20 @@ ProductConfiguratorMixin._onChangeCombinationStock = function (ev, $parent, comb
         }
     }
 
-    var addBusinessDays = function(d,n) {
-        d = new Date(d.getTime());
-        var day = d.getDay();
-        var un_jour_supp = 0
-        if (day == 6 || day == 0){
-            un_jour_supp = 1
+    var addBusinessDays = function(start_date, added_days) {
+        var days_elapsed = 0
+        while (days_elapsed < added_days){
+            start_date.setDate(start_date.getDate()+1)
+            if (start_date.getDay()==0){
+                 // if a weekend or federal holiday, skip
+                continue
+            }
+            else{
+                // if a workday, count as a day
+                days_elapsed += 1
+            }
         }
-        d.setDate(d.getDate() + n + un_jour_supp );
-        return d;
+        return start_date
     }
 
     xml_load.then(function () {
@@ -114,15 +119,17 @@ ProductConfiguratorMixin._onChangeCombinationStock = function (ev, $parent, comb
             limit_date_for_today_normal_delivery.setHours(23, 0, 0)
 
             var now = new Date();
-            var amana_expected_delivery_date = new Date()
+
             var express_delivery_date = new Date()
-            if (now > limit_date_for_today_express_delivery || now.getDay() === 0) {
+            if (now.getDay() === 0 || now > limit_date_for_today_express_delivery) {
                 express_delivery_date = addBusinessDays(express_delivery_date, 1)
             }
-            if (now > limit_date_for_today_normal_delivery) {
-                amana_expected_delivery_date.setDate(+1)
+
+            if (now > limit_date_for_today_normal_delivery || now.getDay() == 0 ) {
+                var amana_expected_delivery_date = addBusinessDays(new Date(), 3)
+            }else{
+                var amana_expected_delivery_date = addBusinessDays(new Date(), 2)
             }
-            var amana_expected_delivery_date = addBusinessDays(new Date(), 3)
 
             var langue = $('html').attr('lang')
             combination["amana_expected_delivery_date"] = DAYS[amana_expected_delivery_date.getDay()][LANG[langue]]
