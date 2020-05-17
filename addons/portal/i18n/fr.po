@@ -485,7 +485,7 @@ msgstr "Dans le portail"
 #: code:addons/portal/controllers/portal.py:201
 #, python-format
 msgid "Invalid Email! Please enter a valid email address."
-msgstr "Adresse email incorrecte! Merci de saisir une adresse email valable."
+msgstr "Adresse email incorrecte! Merci de saisir une adresse email valide."
 
 #. module: portal
 #: code:addons/portal/controllers/portal.py:272

@@ -575,7 +575,7 @@ msgstr ""
 #: code:addons/auth_signup/controllers/main.py:52
 #, python-format
 msgid "Another user is already registered using this email address."
-msgstr "Un autre utilisateur est déjà enregistré avec cette adresse courriel."
+msgstr "Un autre utilisateur est déjà enregistré avec cette adresse."
 
 #. module: auth_signup
 #: code:addons/auth_signup/controllers/main.py:137

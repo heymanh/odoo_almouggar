@@ -10,6 +10,7 @@ from odoo import fields as odoo_fields, tools, _
 from odoo.exceptions import ValidationError, AccessError, MissingError, UserError
 from odoo.http import content_disposition, Controller, request, route
 from odoo.tools import consteq
+import phonenumbers
 
 # --------------------------------------------------
 # Misc tools
@@ -206,6 +207,19 @@ class CustomerPortal(Controller):
         if data.get('email') and not tools.single_email_re.match(data.get('email')):
             error["email"] = 'error'
             error_message.append(_('Invalid Email! Please enter a valid email address.'))
+
+        # phone number validation
+        if data.get('phone'):
+            country = request.env['res.country'].sudo().search([('id', '=', data.get('country_id'))])
+            x = phonenumbers.parse(data.get('phone'), country.code if data.get('country_id') else "MA")
+            if not phonenumbers.is_valid_number(x):
+                error["phone"] = 'error'
+                error_message.append(_('Le numéro de téléphone saisit semble erroné, merci de le vérifier.'))
+            # on vérifie qu'un autre utilisateur n'a pas le meme numero
+            elif request.env["res.users"].sudo().search([("phone", "=", data.get('phone'))]):
+                error["phone"] = 'error'
+                error_message.append(_('Ce numéro de téléphone est déjà attribué à un autre utilisateur. '
+                                       'Si vous pensez qu\'il s\'agit d\'une erreur merci de vous rapprocher de nos équipes.'))
 
         # vat validation
         partner = request.env.user.partner_id
