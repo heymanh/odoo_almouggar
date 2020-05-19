@@ -207,6 +207,11 @@ class CustomerPortal(Controller):
         if data.get('email') and not tools.single_email_re.match(data.get('email')):
             error["email"] = 'error'
             error_message.append(_('Invalid Email! Please enter a valid email address.'))
+        res = request.env["res.users"].sudo().search([("email", "=", data.get('email'))])
+        if len(res) > 1 or (len(res) == 1 and res.id != request.env.user.id):
+            error["email"] = 'error'
+            error_message.append(_('Email invalide! Cet email est déjà attribué à un utilisateur.'
+                                   'Si vous pensez qu\'il s\'agit d\'une erreur merci de vous rapprocher de nos équipes.'))
 
         # phone number validation
         if data.get('phone'):
@@ -216,10 +221,13 @@ class CustomerPortal(Controller):
                 error["phone"] = 'error'
                 error_message.append(_('Le numéro de téléphone saisit semble erroné, merci de le vérifier.'))
             # on vérifie qu'un autre utilisateur n'a pas le meme numero
-            elif request.env["res.users"].sudo().search([("phone", "=", data.get('phone'))]):
+            res = request.env["res.users"].sudo().search([("phone", "=", data.get('phone'))])
+            if len(res) > 1 or (len(res) == 1 and res.id != request.env.user.id):
                 error["phone"] = 'error'
                 error_message.append(_('Ce numéro de téléphone est déjà attribué à un autre utilisateur. '
                                        'Si vous pensez qu\'il s\'agit d\'une erreur merci de vous rapprocher de nos équipes.'))
+            # elif request.env["res.users"].sudo().search([("phone", "=", data.get('phone'))]):
+
 
         # vat validation
         partner = request.env.user.partner_id

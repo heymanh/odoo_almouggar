@@ -630,7 +630,7 @@ msgstr "Contact"
 #: code:addons/auth_signup/controllers/main.py:55
 #, python-format
 msgid "Could not create a new account."
-msgstr "Vous ne pouvez pas créer un nouveau compte."
+msgstr "Nous avons déjà un compte pour cet email, si vous avez oublié votre mot de passe vous pouvez le réinitialiser via l'écran de connexion."
 
 #. module: auth_signup
 #: code:addons/auth_signup/controllers/main.py:84
