@@ -453,6 +453,8 @@ class PurchaseOrderLine(models.Model):
     taxes_id = fields.Many2many('account.tax', string='Taxes', domain=['|', ('active', '=', False), ('active', '=', True)])
     product_uom = fields.Many2one('uom.uom', string='Product Unit of Measure', required=True)
     product_id = fields.Many2one('product.product', string='Product', domain=[('purchase_ok', '=', True)], change_default=True, required=True)
+    barcode = fields.Char(related='product_id.barcode', string="Code Barre")
+
     product_image = fields.Binary(
         'Product Image', related="product_id.image", readonly=False,
         help="Non-stored related field to allow portal user to see the image of the product he has ordered")
