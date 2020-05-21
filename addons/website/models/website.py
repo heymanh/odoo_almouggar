@@ -864,7 +864,7 @@ class SeoMetadata(models.AbstractModel):
         if request.website.social_default_image:
             img = '/web/image/website/%s/social_default_image' % request.website.id
         else:
-            img = '/web/image/res.company/%s/logo' % company.id
+            img = '/web/image/res.company/%s/web_logo' % company.id
         # Default meta for OpenGraph
         default_opengraph = {
             'og:type': 'website',
