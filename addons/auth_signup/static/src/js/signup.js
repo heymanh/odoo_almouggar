@@ -13,6 +13,15 @@ base.ready().then(function() {
             $btn.prepend('<i class="fa fa-refresh fa-spin"/> ');
         });
     }
+
+    if ($('.oe_reset_password_form').length > 0) {
+        $('.oe_reset_password_form').on('submit', function (ev) {
+            var $form = $(ev.currentTarget);
+            var $btn = $form.find('.oe_login_buttons > button[type="submit"]');
+            $btn.attr('disabled', 'disabled');
+            $btn.prepend('<i class="fa fa-refresh fa-spin"/> ');
+        });
+    }
 });
 
 });
