@@ -21,7 +21,7 @@ const DAYS = [
     ['Saturday', 'samedi']
 ]
 const JOURS_FERIES = ['2020-05-25', '2020-07-30', '2020-07-31', '2020-08-20',
-    '2020-08-20', '2020-10-29', '2020-11-06', '2021-01-01']
+    '2020-10-29', '2020-11-06', '2021-01-01']
 
 const DEMAIN = ['tomorrow', 'demain']
 const AUJOURDHUI = ['today', 'aujourd\'hui']
