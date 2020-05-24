@@ -20,6 +20,9 @@ const DAYS = [
     ['Friday', 'vendredi'],
     ['Saturday', 'samedi']
 ]
+const JOURS_FERIES = ['2020-05-25', '2020-07-30', '2020-07-31', '2020-08-20',
+    '2020-08-20', '2020-10-29', '2020-11-06', '2021-01-01']
+
 const DEMAIN = ['tomorrow', 'demain']
 const AUJOURDHUI = ['today', 'aujourd\'hui']
 const LANG = {'en-US':0, 'fr-FR':1}
@@ -79,7 +82,7 @@ ProductConfiguratorMixin._onChangeCombinationStock = function (ev, $parent, comb
         var days_elapsed = 0
         while (days_elapsed < added_days){
             start_date.setDate(start_date.getDate()+1)
-            if (start_date.getDay()==0){
+            if (start_date.getDay()==0 || JOURS_FERIES.includes(start_date.toISOString().slice(0,10))){
                  // if a weekend or federal holiday, skip
                 continue
             }
@@ -121,7 +124,7 @@ ProductConfiguratorMixin._onChangeCombinationStock = function (ev, $parent, comb
             var now = new Date();
 
             var express_delivery_date = new Date()
-            if (now.getDay() === 0 || now > limit_date_for_today_express_delivery) {
+            if (now.getDay() === 0 || now > limit_date_for_today_express_delivery || JOURS_FERIES.includes(now.toISOString().slice(0,10))) {
                 express_delivery_date = addBusinessDays(express_delivery_date, 1)
             }
 
