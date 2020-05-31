@@ -62,18 +62,18 @@ ProductConfiguratorMixin._onChangeCombinationStock = function (ev, $parent, comb
 
     $parent.find('#add_to_cart').removeClass('out_of_stock');
     if (combination.product_type === 'product' && _.contains(['always', 'threshold'], combination.inventory_availability)) {
-        combination.virtual_available -= parseInt(combination.cart_qty);
-        if (combination.virtual_available < 0) {
-            combination.virtual_available = 0;
+        combination.qty_real -= parseInt(combination.cart_qty);
+        if (combination.qty_real < 0) {
+            combination.qty_real = 0;
         }
         // Handle case when manually write in input
-        if (qty > combination.virtual_available) {
+        if (qty > combination.qty_real) {
             var $input_add_qty = $parent.find('input[name="add_qty"]');
-            qty = combination.virtual_available || 1;
+            qty = combination.qty_real || 1;
             $input_add_qty.val(qty);
         }
-        if (qty > combination.virtual_available
-            || combination.virtual_available < 1 || qty < 1) {
+        if (qty > combination.qty_real
+            || combination.qty_real < 1 || qty < 1) {
             $parent.find('#add_to_cart').addClass('disabled out_of_stock');
         }
     }
@@ -113,7 +113,7 @@ ProductConfiguratorMixin._onChangeCombinationStock = function (ev, $parent, comb
         ));
         $('div.seller_messages').html($message);
 
-        if (combination["virtual_available"]>0){
+        if (combination["qty_real"]>0){
 
             var limit_date_for_today_express_delivery = new Date()
             limit_date_for_today_express_delivery.setHours(14,0,0)

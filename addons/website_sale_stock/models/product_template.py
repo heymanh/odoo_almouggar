@@ -25,7 +25,8 @@ class ProductTemplate(models.Model):
         if not self.env.context.get('website_sale_stock_get_quantity'):
             product = self.env['product.product'].sudo().browse(combination_info['product_id'])
             combination_info.update({
-                'qty_available': product.qty_available
+                'qty_available': product.qty_available,
+                'qty_real': product.virtual_available - product.incoming_qty
             })
             return combination_info
 
@@ -33,6 +34,7 @@ class ProductTemplate(models.Model):
             product = self.env['product.product'].sudo().browse(combination_info['product_id'])
             combination_info.update({
                 'qty_available': product.qty_available,
+                'qty_real': product.virtual_available - product.incoming_qty,
                 'virtual_available': product.virtual_available,
                 'product_type': product.type,
                 'inventory_availability': product.inventory_availability,
@@ -46,6 +48,7 @@ class ProductTemplate(models.Model):
             product_template = self.sudo()
             combination_info.update({
                 'qty_available': 0,
+                'qty_real': 0,
                 'virtual_available': 0,
                 'product_type': product_template.type,
                 'inventory_availability': product_template.inventory_availability,
